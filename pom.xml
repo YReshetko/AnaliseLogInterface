@@ -7,17 +7,9 @@
 	<artifactId>ALIService</artifactId>
     <version>1.0</version>
 	<packaging>pom</packaging>
-	 <dependencies>
-        <dependency>
-            <groupId>com.my.home.ali</groupId>
-			<artifactId>ALIModel</artifactId>
-			<version>1.0</version>
-			<scope>provided</scope>
-        </dependency>
-    </dependencies>
 	<modules>
-		<module>0003</module>
-		<module>0001</module>
-		<module>0002</module>
+		<module>0003</module><!--Generate model classes and build model lib-->
+		<module>0001</module><!--Build service part-->
+		<module>0002</module><!--Build UI part-->
 	</modules>
 </project>
