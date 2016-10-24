@@ -1,0 +1,8 @@
+{
+	"packageName" : "com.my.home.plugin",
+	"className" : "SomeClassName",
+	"shortDescription" : "Short desctiption of this file",
+	"fullDescription" : "Full description of this plugin",
+	"label" : "SomeLabel",
+	"pluginType" : "STAMPER"
+}

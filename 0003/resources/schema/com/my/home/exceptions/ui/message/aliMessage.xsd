@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:message.ui.exceptions.home.my.com"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            xmlns="urn:message.ui.exceptions.home.my.com"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="AliMessage">
+        <xsd:attribute name="type" type="AliMessageType"/>
+        <xsd:attribute name="message" type="xsd:string"/>
+        <xsd:attribute name="exception" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:simpleType name="AliMessageType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="COMMAND"/>
+            <xsd:enumeration value="INFO"/>
+            <xsd:enumeration value="WARNING"/>
+            <xsd:enumeration value="ERROR"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:beans.directory.home.my.com"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            xmlns="urn:beans.directory.home.my.com"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="FilesToProcess">
+        <xsd:sequence>
+            <xsd:element name="selectedFiles" maxOccurs="unbounded" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute name="basePath" type="xsd:string"/>
+        <xsd:attribute name="totalSize" type="xsd:long"/>
+    </xsd:complexType>
+</xsd:schema>

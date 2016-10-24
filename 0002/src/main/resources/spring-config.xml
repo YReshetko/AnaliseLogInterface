@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="RemoteBeanFactory" class="com.my.home.factory.RemoteBeanFactory" init-method="init" scope="singleton">
+           <property name="contextFactoryKey" value="java.naming.factory.initial"/>
+           <property name="contextFactoryValue" value="com.sun.enterprise.naming.SerialInitContextFactory"/>
+           <property name="packageKey" value="java.naming.factory.url.pkgs"/>
+           <property name="packageValue" value="com.sun.enterprise.naming"/>
+           <property name="jndiFactoryKey" value="java.naming.factory.state"/>
+           <property name="jndiFactoryValue" value="com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl"/>
+           <property name="ejbHostKey" value="org.omg.CORBA.ORBInitialHost"/>
+           <property name="ejbHostValue" value="localhost"/>
+           <property name="ejbPortKey" value="org.omg.CORBA.ORBInitialPort"/>
+           <property name="ejbPortValue" value="3700"/>
+        </bean>
+
+        <bean id="GetDirTreeExecution" class="com.my.home.execution.GetDirTreeExecution">
+           <property name="jarName" value="LogAnaliseService-1.0"/>
+           <property name="beanName" value="DirTreeControllerRemote"/>
+           <property name="packageName" value="com.my.home.ejb"/>
+        </bean>
+        <bean id="ProcessFilesToLog" class="com.my.home.execution.ProcessFilesToLog">
+            <property name="jarName" value="LogAnaliseService-1.0"/>
+            <property name="beanName" value="ProcessFilesRemote"/>
+            <property name="packageName" value="com.my.home.ejb"/>
+        </bean>
+        <bean id="GetThreadsForDir" class="com.my.home.execution.GetThreadsForDir">
+            <property name="jarName" value="LogAnaliseService-1.0"/>
+            <property name="beanName" value="GetThreadsRemote"/>
+            <property name="packageName" value="com.my.home.ejb"/>
+        </bean>
+        <bean id="PluginsController" class="com.my.home.execution.PluginsController">
+            <property name="jarName" value="LogAnaliseService-1.0"/>
+            <property name="beanName" value="RetrievePluginsRemote"/>
+            <property name="packageName" value="com.my.home.ejb"/>
+        </bean>
+        <bean id="DownloadThread" class="com.my.home.execution.DownloadThread" scope="prototype">
+            <property name="jarName" value="LogAnaliseService-1.0"/>
+            <property name="beanName" value="GetThreadsRemote"/>
+            <property name="packageName" value="com.my.home.ejb"/>
+            <property name="dirUtils" ref="DirUtils"/>
+        </bean>
+        <bean id="RemoveThreads" class="com.my.home.execution.RemoveThreads">
+            <property name="jarName" value="LogAnaliseService-1.0"/>
+            <property name="beanName" value="GetThreadsRemote"/>
+            <property name="packageName" value="com.my.home.ejb"/>
+        </bean>
+        <bean id="DirUtils" class="com.my.home.utils.DirUtils">
+            <property name="tempDir"  value="D:/temp"/>
+        </bean>
+</beans>

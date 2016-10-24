@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.my.home.ali</groupId>
+	<artifactId>ALIService</artifactId>
+    <version>1.0</version>
+	<packaging>pom</packaging>
+	 <dependencies>
+        <dependency>
+            <groupId>com.my.home.ali</groupId>
+			<artifactId>ALIModel</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+        </dependency>
+    </dependencies>
+	<modules>
+		<module>0003</module>
+		<module>0001</module>
+		<module>0002</module>
+	</modules>
+</project>

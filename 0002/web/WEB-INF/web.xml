@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+           version="3.0">
+    <filter>
+        <filter-name>ExecuteFilter</filter-name>
+        <filter-class>com.my.home.filters.ExecuteFilter</filter-class>
+    </filter>
+    <servlet>
+        <description>Execute method in ejb</description>
+        <display-name>execute</display-name>
+        <servlet-name>ExecuteEJB</servlet-name>
+        <servlet-class>com.my.home.servlets.ExecuteEJB</servlet-class>
+    </servlet>
+    <servlet>
+        <description>Returns events which executes on ejb side</description>
+        <display-name>progress</display-name>
+        <servlet-name>ProgressOnEJB</servlet-name>
+        <servlet-class>com.my.home.servlets.ProgressOnEJB</servlet-class>
+    </servlet>
+    <servlet>
+        <description>Upload plugins servlet</description>
+        <display-name>PluginUploader</display-name>
+        <servlet-name>PluginUploader</servlet-name>
+        <servlet-class>com.my.home.servlets.PluginUploader</servlet-class>
+        <multipart-config>
+            <max-file-size>20485760</max-file-size>
+            <max-request-size>20971520</max-request-size>
+            <file-size-threshold>5242880</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <description>Download files from web server</description>
+        <display-name>Download</display-name>
+        <servlet-name>DownloadFile</servlet-name>
+        <servlet-class>com.my.home.servlets.DownloadFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExecuteEJB</servlet-name>
+        <url-pattern>/execute</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProgressOnEJB</servlet-name>
+        <url-pattern>/progress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PluginUploader</servlet-name>
+        <url-pattern>/pluginupload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadFile</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+    <filter-mapping>
+        <filter-name>ExecuteFilter</filter-name>
+        <servlet-name>ExecuteEJB</servlet-name>
+    </filter-mapping>
+    <!--filter-mapping>
+        <filter-name>ExecuteFilter</filter-name>
+        <servlet-name>ProgressOnEJB</servlet-name>
+    </filter-mapping-->
+</web-app>

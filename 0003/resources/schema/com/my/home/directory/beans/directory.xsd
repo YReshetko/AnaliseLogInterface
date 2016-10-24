@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:beans.directory.home.my.com"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            xmlns="urn:beans.directory.home.my.com"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+           <xsd:complexType name="Directory">
+               <xsd:sequence>
+                   <xsd:element name="directories" maxOccurs="unbounded" type="Directory"/>
+                   <xsd:element name="files" maxOccurs="unbounded" type="File"/>
+               </xsd:sequence>
+               <xsd:attribute name="isOpen" type="xsd:boolean" use="required"/>
+               <xsd:attribute name="name" type="xsd:string" use="required"/>
+           </xsd:complexType>
+           <xsd:complexType name="File">
+               <xsd:attribute name="fileName" type="xsd:string" use="required"/>
+               <xsd:attribute name="isSelect" type="xsd:boolean" use="required"/>
+           </xsd:complexType>
+</xsd:schema>
