@@ -9,10 +9,10 @@
 		<version>1.0</version>
 	</parent>
     <groupId>com.my.home.ali</groupId>
-    <artifactId>ALIModel</artifactId>
-    <version>1.0</version>
+    <artifactId>${ali.model.artifact.id}</artifactId>
+    <version>${ali.model.artifact.version}</version>
     <packaging>jar</packaging>
-    <name>ALIModel</name>
+    <name>${ali.model.artifact.id}</name>
     <build>
         <plugins>
             <plugin>
@@ -22,23 +22,6 @@
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
-            </plugin>
-			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-				<executions>
-                    <execution>
-                        <id>compile</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -134,7 +117,7 @@
 								<resource>
 									<directory>target</directory>
 									<includes>
-										<include>${project.name}-${project.version}.jar</include>
+										<include>${ali.model.artifact.jar}</include>
 									</includes>
 									<filtering>false</filtering>
 								</resource>

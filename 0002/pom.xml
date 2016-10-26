@@ -9,29 +9,10 @@
 		<version>1.0</version>
 	</parent>
     <groupId>com.my.home.ali</groupId>
-    <artifactId>GlassFishTry</artifactId>
-    <version>1.0</version>
-    <name>GlassFishTry</name>
+    <artifactId>${ali.ui.artifact.id}</artifactId>
+    <version>${ali.ui.artifact.version}</version>
+    <name>${ali.ui.artifact.id}</name>
     <packaging>war</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>4.3.1.RELEASE</version>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -67,7 +48,7 @@
                                 <resource>
                                     <directory>target</directory>
                                     <includes>
-                                        <include>${project.name}-${project.version}.war</include>
+                                        <include>${ali.ui.artifact.id}-${ali.ui.artifact.version}.war</include>
                                     </includes>
                                     <filtering>false</filtering>
                                 </resource>

@@ -9,43 +9,17 @@
 		<version>1.0</version>
 	</parent>
     <groupId>com.my.home.ali</groupId>
-    <artifactId>LogAnaliseService</artifactId>
-    <version>1.0</version>
+    <artifactId>${ali.service.artifact.id}</artifactId>
+    <version>${ali.service.artifact.version}</version>
     <packaging>jar</packaging>
-    <name>LogAnaliseService</name>
+    <name>${ali.service.artifact.id}</name>
     <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>4.3.1.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jvnet.jaxb2.maven2</groupId>
-            <artifactId>maven-jaxb2-plugin</artifactId>
-            <version>0.13.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.7</version>
-        </dependency>
 		<dependency>
             <groupId>com.my.home.ali</groupId>
-			<artifactId>ALIModel</artifactId>
-			<version>1.0</version>
+			<artifactId>${ali.model.artifact.id}</artifactId>
+			<version>${ali.model.artifact.version}</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/../lib/ALIModel-1.0.jar</systemPath>
+			<systemPath>${ali.model.artifact.path}</systemPath>
         </dependency>
     </dependencies>
     <build>
@@ -57,23 +31,6 @@
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-				<executions>
-                    <execution>
-                        <id>compile</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -96,24 +53,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.1</version>
                 <executions>
@@ -129,7 +68,7 @@
                                 <resource>
                                     <directory>target</directory>
                                     <includes>
-                                        <include>${project.name}-${project.version}.jar</include>
+                                        <include>${ali.service.artifact.id}-${ali.service.artifact.version}.jar</include>
                                     </includes>
                                     <filtering>false</filtering>
                                 </resource>
