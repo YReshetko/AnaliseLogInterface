@@ -147,6 +147,28 @@ public class PluginStorage implements IPluginStorage
         }
     }
 
+    /**
+     * Retrieve full path to plugin
+     *
+     * @param pluginDescription - plugin description
+     * @return - full path
+     */
+    @Override
+    public String getPathToPlugin(PluginDescription pluginDescription)
+    {
+        List<Plugins> plugins = storageDescriptor.getPlugins();
+        for (Plugins plugin : plugins)
+        {
+            boolean flag = plugin.getPackageName().equals(pluginDescription.getPackageName());
+            flag &= plugin.getClassName().equals(pluginDescription.getClassName());
+            if (flag)
+            {
+                
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Get storage config which contain descriptions of files and folders names and their templates (patterns)

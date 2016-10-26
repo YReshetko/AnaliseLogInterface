@@ -23,4 +23,11 @@ public interface IPluginStorage
      * @return - StorageDescriptor
      */
     StorageDescriptor getStorageDescriptor();
+
+    /**
+     * Retrieve full path to plugin
+     * @param pluginDescription - plugin description
+     * @return - full path
+     */
+    String getPathToPlugin(PluginDescription pluginDescription);
 }
