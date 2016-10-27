@@ -6,3 +6,4 @@
 artifacts/
 lib/
 **/lib/
+.idea/

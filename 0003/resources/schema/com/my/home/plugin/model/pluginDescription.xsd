@@ -3,7 +3,16 @@
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
             xmlns="urn:model.plugin.home.my.com"
+            xmlns:log="urn:beans.log.home.my.com"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!--xsd:include schemaLocation="../../log/beans/threadsSet.xsd"/-->
+    <xsd:import namespace="urn:beans.log.home.my.com" schemaLocation="../../log/beans/threadsSet.xsd"/>
+    <xsd:complexType name="PluginsAndLog">
+        <xsd:sequence>
+            <xsd:element name="plugins" maxOccurs="unbounded" type="Plugin"/>
+        </xsd:sequence>
+        <xsd:attribute name="threads" type="ThreadsSet"/>
+    </xsd:complexType>
     <xsd:complexType name="Plugin">
         <xsd:sequence>
             <xsd:element name="description" maxOccurs="1" type="PluginDescription"/>
