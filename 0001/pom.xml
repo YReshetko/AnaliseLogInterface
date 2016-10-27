@@ -21,6 +21,13 @@
 			<scope>system</scope>
 			<systemPath>${ali.model.artifact.path}</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.my.home.ali</groupId>
+            <artifactId>${ali.plugin.artifact.id}</artifactId>
+            <version>${ali.plugin.artifact.version}</version>
+            <scope>system</scope>
+            <systemPath>${ali.plugin.artifact.path}</systemPath>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -151,22 +151,28 @@ public class PluginStorage implements IPluginStorage
      * Retrieve full path to plugin
      *
      * @param pluginDescription - plugin description
+     * @param version - plugin version
      * @return - full path
      */
     @Override
-    public String getPathToPlugin(PluginDescription pluginDescription)
+    public String getPathToPlugin(PluginDescription pluginDescription, int version)
     {
         List<Plugins> plugins = storageDescriptor.getPlugins();
+        String path = null;
         for (Plugins plugin : plugins)
         {
             boolean flag = plugin.getPackageName().equals(pluginDescription.getPackageName());
             flag &= plugin.getClassName().equals(pluginDescription.getClassName());
             if (flag)
             {
-                
+                path = config.getPathToStorage() + SEPARATOR +
+                plugin.getFolder() + SEPARATOR +
+                String.format(config.getPluginVersionFolderTemplate(), version) + SEPARATOR +
+                config.getPluginFileName();
+                break;
             }
         }
-        return null;
+        return path;
     }
 
 

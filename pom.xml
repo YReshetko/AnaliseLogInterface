@@ -43,8 +43,10 @@
 
 	<modules>
 		<module>0003</module><!--Generate model classes and build model lib-->
+		<module>0004</module><!--Build plugins interface-->
 		<module>0001</module><!--Build service part-->
 		<module>0002</module><!--Build UI part-->
+
 	</modules>
 
 	<properties>
@@ -59,6 +61,11 @@
 		<ali.model.artifact.version>1.0</ali.model.artifact.version>
 		<ali.model.artifact.jar>${ali.model.artifact.id}-${ali.model.artifact.version}.jar</ali.model.artifact.jar>
 		<ali.model.artifact.path>${basedir}/../lib/${ali.model.artifact.id}-${ali.model.artifact.version}.jar</ali.model.artifact.path>
+        <!--Plugins interface properties-->
+        <ali.plugin.artifact.id>PluginInterface</ali.plugin.artifact.id>
+        <ali.plugin.artifact.version>1.0</ali.plugin.artifact.version>
+		<ali.plugin.artifact.jar>${ali.plugin.artifact.id}-${ali.plugin.artifact.version}.jar</ali.plugin.artifact.jar>
+		<ali.plugin.artifact.path>${basedir}/../lib/${ali.plugin.artifact.id}-${ali.plugin.artifact.version}.jar</ali.plugin.artifact.path>
 	</properties>
 	<build>
 		<plugins>
@@ -91,7 +98,7 @@
 						</goals>
 						<configuration>
 							<outputDirectory>
-								${basedir}/lib
+								${basedir}/../lib
 							</outputDirectory>
 						</configuration>
 					</execution>

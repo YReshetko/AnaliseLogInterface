@@ -5,3 +5,4 @@
 0003/src
 artifacts/
 lib/
+**/lib/

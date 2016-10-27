@@ -27,7 +27,8 @@ public interface IPluginStorage
     /**
      * Retrieve full path to plugin
      * @param pluginDescription - plugin description
+     * @param version - version of plugin
      * @return - full path
      */
-    String getPathToPlugin(PluginDescription pluginDescription);
+    String getPathToPlugin(PluginDescription pluginDescription, int version);
 }
