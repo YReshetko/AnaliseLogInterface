@@ -46,6 +46,11 @@
             <property name="beanName" value="GetThreadsRemote"/>
             <property name="packageName" value="com.my.home.ejb"/>
         </bean>
+        <bean id="PluginProcessorExecutor" class="com.my.home.execution.PluginProcessorExecutor">
+            <property name="jarName" value="LogAnaliseService-1.0"/>
+            <property name="beanName" value="PluginProcessorRemote"/>
+            <property name="packageName" value="com.my.home.ejb"/>
+        </bean>
         <bean id="DirUtils" class="com.my.home.utils.DirUtils">
             <property name="tempDir"  value="D:/temp"/>
         </bean>

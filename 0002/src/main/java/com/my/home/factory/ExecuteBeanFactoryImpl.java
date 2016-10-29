@@ -48,6 +48,7 @@ public class ExecuteBeanFactoryImpl implements IExecuteBeanFactory
         GET_ALL_PLUGINS("PluginsController"),
         DOWNLOAD_THREAD("DownloadThread"),
         REMOVE_THREADS("RemoveThreads"),
+        EXECUTE_PLUGINS("PluginProcessorExecutor"),
         PROGRESS("");
         private String beanId;
         private ExecutionCommands(String beanId)

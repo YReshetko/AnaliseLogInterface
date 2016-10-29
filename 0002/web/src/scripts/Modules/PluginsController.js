@@ -43,6 +43,20 @@ ali.PluginsController = function(container)
             this._container.append(this._plugins[i].plugin);
         }
     }
+	this.getSelectedPlugins = function()
+	{
+		var out = new Array();
+		var i,l;
+		l = this._plugins.length;
+		for(i=0;i<l;i++)
+		{
+			if(this._plugins[i].select)
+			{
+				out.push(this._plugins[i].descriptor);
+			}
+		}
+		return out;
+	}
     this.load();
 }
 
@@ -51,6 +65,7 @@ ali.PluginSample = function(pluginDescriptor)
     this._descriptor = pluginDescriptor;
     this._versions = this._descriptor["versions"];
     this._lastVersion = this._versions[this._versions.length - 1]["version"];
+	this._currentVersion = 1;
     var pluginBlockStyle =
     {
         padding         : "4px",
@@ -65,17 +80,20 @@ ali.PluginSample = function(pluginDescriptor)
 
     var pluginLabelStyle =
     {
-        display : "inline-block",
+        display : "inline-block"
     }
     var pluginVersionStyle =
     {
         display : "inline-block",
         float   : "right"
     }
+	this._checkBox = new ali.CheckBox(10);
     this._plugin = $("<div/>").css(pluginBlockStyle).addClass("plugin-main-block");
     this._label = $("<div/>").css(pluginLabelStyle).addClass("plugin-label");
     this._version = $("<div/>").css(pluginVersionStyle).addClass("plugin-version");
 
+
+    this._plugin.append(this._checkBox.box);
     this._plugin.append(this._label);
     this._plugin.append(this._version);
     this._label.append(this._descriptor["label"]);
@@ -88,7 +106,12 @@ ali.PluginSample = function(pluginDescriptor)
        this._versionNumbers.push(this._versions[i]["version"]);
     }
 
-    this._selector = new ali.DropDown("btn-xs", "btn-success", this._versionNumbers, this._lastVersion, null);
+	var self = this;
+	var selectVersion = function(version)
+	{
+		self._currentVersion = version;
+	}
+    this._selector = new ali.DropDown("btn-xs", "btn-success", this._versionNumbers, this._lastVersion, selectVersion);
 
     this._version.append("Ver. ");
     this._version.append(this._selector.dropDown);
@@ -103,6 +126,26 @@ ali.PluginSample = function(pluginDescriptor)
             {
                return this._plugin;
             }
-        }
+        },
+	    select : {
+		    get : function()
+		    {
+			    return this._checkBox.select
+		    },
+		    set : function(value)
+		    {
+			    this._checkBox.select = value;
+		    }
+	    },
+	    descriptor : {
+		    get : function()
+		    {
+			    var out = {
+				    description : this._descriptor,
+				    version : this._currentVersion
+			    }
+			    return out;
+		    }
+	    }
     });
 }

@@ -125,11 +125,7 @@ ali.ThreadsViewer = function(container)
 	this.downloadSelected = function()
 	{
 		var command = ali.CONST.DOWNLOAD_THREAD;
-		var threads = this._getSelectedThreads();
-		var data = {
-			path : this._path,
-			names : threads
-		};
+		var data = this.getThreadsSet();
 		command["data"] = JSON.stringify(data);
 		var threadName = "matrixtdp";
 		var config =
@@ -142,6 +138,15 @@ ali.ThreadsViewer = function(container)
 				download(response, threadName);
 			}
 		}, config)
+	}
+	this.getThreadsSet = function()
+	{
+		var threads = this._getSelectedThreads();
+		var data = {
+			path : this._path,
+			names : threads
+		};
+		return data;
 	}
 	this._getSelectedThreads = function()
 	{

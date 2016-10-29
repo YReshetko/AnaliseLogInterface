@@ -87,10 +87,15 @@ ali.CONST.REMOVE_THREADS = {
 	"command" : "REMOVE_THREADS",
 	"data"    : ""
 }
+ali.CONST.EXECUTE_PLUGINS = {
+	"command" : "EXECUTE_PLUGINS",
+	"data"    : ""
+}
 
 ali.CONST.PROGRESS_LABELS = {
-	"DOWNLOAD_THREAD" : "Preparing log file for downloading",
-	"GET_PROCESS_FILES" : "Parsing log"
+	"DOWNLOAD_THREAD"   : "Preparing log file for downloading",
+	"GET_PROCESS_FILES" : "Parsing log",
+	"EXECUTE_PLUGINS"   : "Processing log via plugins"
 }
 
 ali.CONST.THREADS_COLORS =

@@ -105,6 +105,13 @@ function checkProcesses(config)
 			download(event.data, "unknown");
 		}
 	}, false);
+
+	eventSource.addEventListener('EXECUTE_PLUGINS', function(event)
+	{
+		console.log("EXECUTE_PLUGINS complete");
+		console.log(event.data);
+	}, false);
+
 	eventSource.addEventListener('COMPLETE_ALL_PROCESSES', function(event) {
 		progressSystem.stopProgress();
 		eventSource.close();

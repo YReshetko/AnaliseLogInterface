@@ -24,6 +24,7 @@ ali.MainController = function(panelSystem)
 	}
 
 
+
 	this._threadsViewer = new ali.ThreadsViewer(this._threadPanel.container);
 	this._dirController = new ali.DirController(this._dirPanel.container, this);
 	this._fileController = new ali.FileController(this._filePanel.container);
@@ -48,4 +49,24 @@ ali.MainController = function(panelSystem)
 			}
 		}
 	});
+
+	this.executePlugins = function()
+	{
+		var threadSet = this._threadsViewer.getThreadsSet();
+		var plugins = this._pluginsController.getSelectedPlugins();
+		if(plugins.length > 0 && threadSet.names.length > 0)
+		{
+			var data =
+			{
+				plugins : plugins,
+				threadsSet : threadSet
+			}
+			var command = ali.CONST.EXECUTE_PLUGINS;
+			command["data"] = data;
+
+			sendRequest("execute", command, function(response){}, null);
+		}
+		//TODO Implement retrieving log threads and plugins and send it to execution
+		//ali.CONST.EXECUTE_PLUGINS
+	}
 }

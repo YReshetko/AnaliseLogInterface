@@ -6,15 +6,17 @@ ali.ToolsSystem = function(stage, mainController)
 	this._mainController = mainController;
 	this._toolsPanel = stage.tools;
 
-	var threadBlockStyle =
+	var blockStyle =
 	{
 		'padding-top' : "10px"
 	}
 	this._logBlock = $("<div/>").addClass("ali-tools-log-block");
-	this._threadBlock = $("<div/>").css(threadBlockStyle).addClass("ali-thread-log-block");
+	this._threadBlock = $("<div/>").css(blockStyle).addClass("ali-thread-log-block");
+	this._pluginBlock = $("<div/>").css(blockStyle).addClass("ali-plugin-log-block");
 
 	this._toolsPanel.append(this._logBlock);
 	this._toolsPanel.append(this._threadBlock);
+	this._toolsPanel.append(this._pluginBlock);
 
 	this._logButtons = new Array();
 
@@ -27,6 +29,11 @@ ali.ToolsSystem = function(stage, mainController)
 	this._threadButtons.push(new ali.ToolButton("glyphicon-unchecked", "Unmark all threads", "UNMARK_ALL_THREADS", this));
 	this._threadButtons.push(new ali.ToolButton("glyphicon-download-alt", "Download selected threads", "DOWNLOAD_SELECTED_THREADS", this));
 	this._threadButtons.push(new ali.ToolButton("glyphicon-trash", "Remove selected threads", "REMOVE_THREADS", this));
+
+	this._pluginButtons = new Array();
+
+	this._pluginButtons.push(new ali.ToolButton("glyphicon-cog", "Process selected threads via selected plugins", "EXECUTE_PLUGINS", this));
+
 	var i,l;
 	l = this._logButtons.length;
 
@@ -38,6 +45,11 @@ ali.ToolsSystem = function(stage, mainController)
 	for(i=0;i<l;i++)
 	{
 		this._threadBlock.append(this._threadButtons[i].button);
+	}
+	l = this._pluginButtons.length;
+	for(i=0;i<l;i++)
+	{
+		this._pluginBlock.append(this._pluginButtons[i].button);
 	}
 
 	this.execute = function(event)
@@ -65,6 +77,10 @@ ali.ToolsSystem = function(stage, mainController)
 	   else if (event == "DOWNLOAD_SELECTED_THREADS")
 	   {
 		   this._mainController.threadsViewer.downloadSelected();
+	   }
+	   else if (event == "EXECUTE_PLUGINS")
+	   {
+		   this._mainController.executePlugins();
 	   }
 	}
 }
