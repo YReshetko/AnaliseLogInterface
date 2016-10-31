@@ -28,6 +28,7 @@ public class PluginsExecutor
         try {
             IPluginStorage storage = (IPluginStorage) SpringBeanFactory.getInstance().getBean("PluginStorage");
             PluginFactory pluginFactory = new PluginFactory();
+            pluginFactory.init();
             this.plugins = new ArrayList<IAliPlugin>(plugins.size());
             String path;
             IAliPlugin plugin;

@@ -32,8 +32,8 @@
         <property name="pathToStorage" value="D:/plugins"/>
         <property name="pluginFileName" value="plugin.jar"/>
         <property name="pluginsStorageConfigFileName" value=".config"/>
-        <property name="pluginFoldersTemplate" value="plugin#%s"/>
-        <property name="pluginVersionFolderTemplate" value="version#%s"/>
+        <property name="pluginFoldersTemplate" value="plugin_%s"/>
+        <property name="pluginVersionFolderTemplate" value="version_%s"/>
         <property name="pluginDescriptorFileName" value=".description"/>
     </bean>
     <bean id="PluginStorage" class="com.my.home.plugin.storage.impl.PluginStorage" lazy-init="true" init-method="init">

@@ -62,7 +62,7 @@ ali.MainController = function(panelSystem)
 				threadsSet : threadSet
 			}
 			var command = ali.CONST.EXECUTE_PLUGINS;
-			command["data"] = data;
+			command["data"] = JSON.stringify(data);
 
 			sendRequest("execute", command, function(response){}, null);
 		}
