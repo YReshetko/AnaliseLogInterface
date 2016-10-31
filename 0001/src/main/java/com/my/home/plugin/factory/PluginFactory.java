@@ -16,7 +16,7 @@ public class PluginFactory
     public void init()
     {
         URL[] url = {};
-        loader = new PluginClassLoader(url);
+        loader = new PluginClassLoader(url, this.getClass().getClassLoader());
     }
 
     public IAliPlugin getPlugin(PluginDescription description, String path) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException
