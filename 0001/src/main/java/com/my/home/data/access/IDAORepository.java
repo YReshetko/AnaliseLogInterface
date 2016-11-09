@@ -7,6 +7,8 @@ import com.my.home.log.beans.LogBlock;
 import com.my.home.log.beans.LogNode;
 import com.my.home.log.beans.ThreadDescriptor;
 import com.my.home.log.beans.ThreadsInfo;
+import com.my.home.wrappers.LogPluginWrapper;
+import com.my.home.wrappers.PluginResultDescriptor;
 
 import java.util.Iterator;
 import java.util.List;
@@ -112,7 +114,7 @@ public interface IDAORepository
     void saveThreadInfo(String repositoryId, String subRepositoryId, ThreadsInfo threadsInfo) throws AnyException;
     /**
      * Remove all info about initialized log
-     * @param repositoryId  - repository ID  (D:/out)
+     * @param repositoryId    - repository ID  (D:/out)
      * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
      * @return - true if sub repo has been cleand
      */
@@ -135,4 +137,34 @@ public interface IDAORepository
      * @throws AnyException - any exception
      */
     List<LogBlock> getLogBlocks(FilesToProcess filesToProcess) throws AnyException;
+
+    /**
+     * Retrieve descriptor of plugin results on threads
+     * @param repositoryId - repository ID  (D:/out)
+     * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
+     * @return - PluginResultDescriptor
+     * @throws AnyException - any exception
+     */
+    PluginResultDescriptor getResultsDescriptor(String repositoryId, String subRepositoryId) throws AnyException;
+
+    /**
+     * Save result of working plugins
+     * @param repositoryId  - repository ID  (D:/out)
+     * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
+     * @param wrapper - Object which contains threads and plugins which was executed
+     * @param result - Plugins result
+     * @return - id of result
+     * @throws AnyException - any exception
+     */
+    int savePluginResult(String repositoryId, String subRepositoryId, LogPluginWrapper wrapper, String result) throws AnyException;
+
+    /**
+     * Retrieve plugin result by id
+     * @param repositoryId  - repository ID  (D:/out)
+     * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
+     * @param id - id of result
+     * @return - plugin result
+     * @throws AnyException - any exception
+     */
+    String getPluginResult(String repositoryId, String subRepositoryId, int id) throws AnyException;
 }

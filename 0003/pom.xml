@@ -41,12 +41,28 @@
                 <version>0.13.1</version>
                 <executions>
                     <execution>
+                        <id>wrappers</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-XsimpleEquals</arg>
+                                <arg>-XsimpleHashCode</arg>
+                            </args>
+                            <!--generatePackage>com.my.home.wrappers</generatePackage-->
+                            <schemaDirectory>resources/schema/com/my/home/wrappers</schemaDirectory>
+                            <generateDirectory>src/main/java</generateDirectory>
+                            <forceRegenerate>true</forceRegenerate>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>dir</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generatePackage>com.my.home.directory.beans</generatePackage>
+                            <!--generatePackage>com.my.home.directory.beans</generatePackage-->
                             <schemaDirectory>resources/schema/com/my/home/directory/beans</schemaDirectory>
                             <generateDirectory>src/main/java</generateDirectory>
 							<forceRegenerate>true</forceRegenerate>
@@ -58,7 +74,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generatePackage>com.my.home.exceptions.ui.message</generatePackage>
+                            <!--generatePackage>com.my.home.exceptions.ui.message</generatePackage-->
                             <schemaDirectory>resources/schema/com/my/home/exceptions/ui/message</schemaDirectory>
                             <generateDirectory>src/main/java</generateDirectory>
 							<forceRegenerate>true</forceRegenerate>
@@ -70,7 +86,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generatePackage>com.my.home.plugin.model</generatePackage>
+                            <!--generatePackage>com.my.home.plugin.model</generatePackage-->
                             <schemaDirectory>resources/schema/com/my/home/plugin/model</schemaDirectory>
                             <generateDirectory>src/main/java</generateDirectory>
 							<forceRegenerate>true</forceRegenerate>
@@ -86,12 +102,13 @@
                                 <arg>-XsimpleEquals</arg>
                                 <arg>-XsimpleHashCode</arg>
                             </args>
-                            <generatePackage>com.my.home.log.beans</generatePackage>
+                            <!--generatePackage>com.my.home.log.beans</generatePackage-->
                             <schemaDirectory>resources/schema/com/my/home/log/beans</schemaDirectory>
                             <generateDirectory>src/main/java</generateDirectory>
 							<forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
+
                 </executions>
                 <dependencies>
                     <dependency>

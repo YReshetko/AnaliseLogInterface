@@ -52,6 +52,24 @@ public class RepositoryConfig
     public static final String THREADS_INFO_JSON = "threads.json";
     private String threadsInfoJson;
 
+    /**
+     * Name of folder where will be stored plugin results
+     */
+    public static final String PLUGINS_RESULT_FOLDER = ".ali/results";
+    private String pluginsResultFolder;
+
+    /**
+     * Name of file with results description
+     */
+    private static final String RESULTS_DESCRIPTOR = "descriptor.json";
+    private String resultsDescriptor;
+
+    /**
+     * Template of file name with plugin result
+     */
+    private static final String PLUGIN_RESULT_TEMPLATE = "result_%s.json";
+    private String pluginResultTemplate;
+
     private String path;
     public RepositoryConfig()
     {
@@ -136,5 +154,29 @@ public class RepositoryConfig
 
     public void setThreadsInfoJson(String threadsInfoJson) {
         this.threadsInfoJson = threadsInfoJson;
+    }
+
+    public String getPluginsResultFolder() {
+        return pluginsResultFolder;
+    }
+
+    public void setPluginsResultFolder(String pluginsResultFolder) {
+        this.pluginsResultFolder = pluginsResultFolder;
+    }
+
+    public String getResultsDescriptor() {
+        return resultsDescriptor;
+    }
+
+    public void setResultsDescriptor(String resultsDescriptor) {
+        this.resultsDescriptor = resultsDescriptor;
+    }
+
+    public String getPluginResultTemplate() {
+        return pluginResultTemplate;
+    }
+
+    public void setPluginResultTemplate(String pluginResultTemplate) {
+        this.pluginResultTemplate = pluginResultTemplate;
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:wrappers.home.my.com"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            xmlns="urn:wrappers.home.my.com"
+            xmlns:wrp="urn:wrappers.home.my.com"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="urn:wrappers.home.my.com" schemaLocation="logPluginWrapper.xsd"/>
+    <xsd:complexType name="PluginResult">
+        <xsd:sequence>
+            <xsd:element name="wrapper" maxOccurs="1" type="wrp:LogPluginWrapper"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:int"/>
+    </xsd:complexType>
+    <xsd:complexType name="PluginResultDescriptor">
+        <xsd:sequence>
+            <xsd:element name="results" maxOccurs="unbounded" type="PluginResult"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

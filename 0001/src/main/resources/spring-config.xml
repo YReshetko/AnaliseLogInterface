@@ -14,6 +14,9 @@
         <property name="nodesTemplateJson" value="%s.node"></property>
         <property name="threadTemplateJson" value="thread.%s.json"></property>
         <property name="threadsInfoJson" value="threads.json"></property>
+        <property name="pluginsResultFolder" value=".ali/results"></property>
+        <property name="resultsDescriptor" value="descriptor.json"></property>
+        <property name="pluginResultTemplate" value="result_%s.json"></property>
     </bean>
     <bean id="LogNodeProcessor" class="com.my.home.log.LogNodeProcessor" lazy-init="true" init-method="init">
         <property name="commonStampPattern" value="D T,M \[L\] \[S\] \[C\] "/>

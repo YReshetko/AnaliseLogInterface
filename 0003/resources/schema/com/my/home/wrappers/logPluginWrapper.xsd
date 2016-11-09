@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:wrappers.home.my.com"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            xmlns:log="urn:beans.log.home.my.com"
+            xmlns:plug="urn:model.plugin.home.my.com"
+            xmlns="urn:wrappers.home.my.com"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="urn:beans.log.home.my.com" xml:space="default" schemaLocation="../log/beans/threadsSet.xsd"/>
+    <xsd:import namespace="urn:model.plugin.home.my.com" xml:space="default" schemaLocation="../plugin/model/pluginDescription.xsd"/>
+    <xsd:complexType name="LogPluginWrapper">
+        <xsd:sequence>
+            <xsd:element name="plugins" maxOccurs="unbounded" type="plug:Plugin"/>
+            <xsd:element name="threadsSet" maxOccurs="1" type="log:ThreadsSet"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

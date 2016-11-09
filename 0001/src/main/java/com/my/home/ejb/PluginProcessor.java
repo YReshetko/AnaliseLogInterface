@@ -9,7 +9,7 @@ import com.my.home.log.beans.ThreadsSet;
 import com.my.home.plugin.processor.PluginsExecutor;
 import com.my.home.plugin.processor.PluginsProcessor;
 import com.my.home.utils.JsonUtils;
-import com.my.home.utils.LogPluginWrapper;
+import com.my.home.wrappers.LogPluginWrapper;
 
 import javax.ejb.Stateless;
 import java.util.Iterator;
@@ -21,10 +21,11 @@ import java.util.Iterator;
 public class PluginProcessor implements PluginProcessorRemote
 {
     private PluginsProcessor processor;
+    private LogPluginWrapper wrapper;
     @Override
     public String setup(String value)
     {
-        LogPluginWrapper wrapper = JsonUtils.getObject(value, LogPluginWrapper.class);
+        wrapper = JsonUtils.getObject(value, LogPluginWrapper.class);
         ThreadsSet threadToProcess = wrapper.getThreadsSet();
         IDAORepository repository = new DAORepositoryDir();
         Iterator<LogNode> logNodeIterator = null;
@@ -66,7 +67,18 @@ public class PluginProcessor implements PluginProcessorRemote
 
     @Override
     public String getResult() {
-        return processor.getResult();
+        IDAORepository repository = new DAORepositoryDir();
+        ThreadsSet threadToProcess = wrapper.getThreadsSet();
+        int out;
+        try {
+            out = repository.savePluginResult("", threadToProcess.getPath(), wrapper, processor.getResult());
+        }
+        catch (AnyException e)
+        {
+            out = 0;
+        }
+
+        return String.valueOf(out);
     }
 
     @Override

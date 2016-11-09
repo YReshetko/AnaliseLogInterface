@@ -11,6 +11,9 @@ import com.my.home.log.beans.*;
 import com.my.home.main.factories.SpringBeanFactory;
 import com.my.home.utils.DirectoryUtils;
 import com.my.home.utils.JsonUtils;
+import com.my.home.wrappers.LogPluginWrapper;
+import com.my.home.wrappers.PluginResult;
+import com.my.home.wrappers.PluginResultDescriptor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -90,6 +93,7 @@ public class DAORepositoryDir implements IDAORepository
             folders.add(basePath + config.getProcessFolder());
             folders.add(basePath + config.getNodesFolder());
             folders.add(basePath + config.getThreadsFolder());
+            folders.add(basePath + config.getPluginsResultFolder());
             boolean result = true;
             for (String folder : folders)
             {
@@ -393,6 +397,76 @@ public class DAORepositoryDir implements IDAORepository
         }
 
         return out;
+    }
+
+    /**
+     * Retrieve descriptor of plugin results on threads
+     *
+     * @param repositoryId    - repository ID  (D:/out)
+     * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
+     * @return - PluginResultDescriptor
+     * @throws AnyException - any exception
+     */
+    @Override
+    public PluginResultDescriptor getResultsDescriptor(String repositoryId, String subRepositoryId) throws AnyException
+    {
+        PluginResultDescriptor out = null;
+        try
+        {
+            String descString = dirUtils.readFile(config.getResultsDescriptor(), config.getPluginsResultFolder());
+            out = JsonUtils.getObject(descString, PluginResultDescriptor.class);
+        }
+        catch (AnyException e)
+        {
+            out = new PluginResultDescriptor();
+        }
+        return out;
+    }
+
+    /**
+     * Save result of working plugins
+     *
+     * @param repositoryId    - repository ID  (D:/out)
+     * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
+     * @param wrapper         - Object which contains threads and plugins which was executed
+     * @param result          - Plugins result
+     * @return - id of result
+     * @throws AnyException - any exception
+     */
+    @Override
+    public int savePluginResult(String repositoryId, String subRepositoryId, LogPluginWrapper wrapper, String result) throws AnyException
+    {
+        PluginResultDescriptor descriptor = getResultsDescriptor(repositoryId, subRepositoryId);
+        int currentId = descriptor.getResults().size();
+        ++currentId;
+        PluginResult pluginResult = new PluginResult();
+        pluginResult.setWrapper(wrapper);
+        pluginResult.setId(currentId);
+        descriptor.getResults().add(pluginResult);
+        String fileName = String.format(config.getPluginResultTemplate(), currentId);
+        int out = currentId;
+        if (dirUtils.saveFile(fileName, config.getPluginsResultFolder(), result))
+        {
+           dirUtils.saveFile(config.getResultsDescriptor(), config.getPluginsResultFolder(), JsonUtils.getJson(descriptor));
+        }
+        return out;
+    }
+
+    /**
+     * Retrieve plugin result by id
+     *
+     * @param repositoryId    - repository ID  (D:/out)
+     * @param subRepositoryId - (for example path to sub folder) (Yury/log1/log1_1)
+     * @param id              - id of result
+     * @return - plugin result
+     * @throws AnyException - any exception
+     */
+    @Override
+    public String getPluginResult(String repositoryId, String subRepositoryId, int id) throws AnyException
+    {
+        String fileName = String.format(config.getPluginResultTemplate(), id);
+        String result= dirUtils.readFile(fileName, config.getPluginsResultFolder());
+        return result;
     }
 
     /**
